@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Friend Registry</title>
+        <style>
+            form {
+                width: 300px;
+                margin: 0 auto;
+            }
+
+            label {
+                display: block;
+                margin-top: 20px;
+            }
+
+            button {
+                display: block;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Friend Registry</h1>
+        <form id="friendForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone">
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob">
+
+            <button type="submit">Register</button>
+        </form>
+
+        <h2>Registered Friends</h2>
+        <div id="output"></div>
+
+        <script>
+            let friends = [];
+
+            document.getElementById('friendForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                let friend = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    dob: document.getElementById('dob').value
+                };
+
+                friends.push(friend);
+
+                document.getElementById('output').innerHTML = friends.map((friend, index) => {
+                    return `<strong>Friend ${index + 1}</strong><br>Name: ${friend.name}<br>Email: ${friend.email}<br>Phone: ${friend.phone}<br>Date of Birth: ${friend.dob}<br><br>`;
+                }).join('');
+
+                document.getElementById('friendForm').reset();
+            });
+        </script>
+    </body>
+</html>
